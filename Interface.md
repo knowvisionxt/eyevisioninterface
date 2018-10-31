@@ -40,7 +40,7 @@ int DKOCOLOR_PINK = 91;
 ### 错误码
 ```
 int DKERROR_INIT = 10001; // 初始化错误，待细分类
-int DKERROR_DETECTION = 10001; // 检测过程出现错误
+int DKERROR_DETECTION = 10010; // 检测过程出现错误
 ```
 
 ## 结构体定义
