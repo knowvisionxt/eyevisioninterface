@@ -48,10 +48,14 @@ int DKERROR_DETECTION = 10010; // 检测过程出现错误
 ```
 typedef struct
 {
-    int x; // 左上角横坐标
-    int y; // 左上角纵坐标
-    int width; // 框宽度
-    int height;  // 框高度
+    int tlx; // 左上角横坐标
+    int tly; // 左上角纵坐标
+    int trx; // 右上角横坐标
+    int try; // 右上角纵坐标
+    int blx; // 左下角横坐标
+    int bly; // 左下角纵坐标
+    int brx; // 右下角横坐标
+    int bry; // 右下角纵坐标
 }DKSBox;
 ```
 ### 单检测结果
