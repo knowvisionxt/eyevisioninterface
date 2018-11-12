@@ -147,7 +147,7 @@ typedef struct
 // 初始化，用于加载NNIE模型
 void DKMultiClassDetectionInit();
 // 运行NNIE执行检测，得到检测结果
-DKSMultiDetectionRes * DKMultiClassDetectionProcess(char * imgfilename, DKSMultiDetectionParam param);
+DKSMultiDetectionRes * DKMultiClassDetectionProcess(char * yuvfilename, int iWidth, int iHeight, DKSMultiDetectionParam param);
 // 释放NNIE资源
 void DKMultiClassDetectionEnd();
 ```
@@ -157,7 +157,7 @@ void DKMultiClassDetectionEnd();
 // 初始化，用以加载ncnn场景分类模型
 void DKSceneClassificationInit();
 // 运行ncnn场景分类，得到分类结果
-int DKSceneClassificationProcess(char * imgfilename, DKSSceneClassificationParam param);
+int DKSceneClassificationProcess(char * yuvfilename, int iWidth, int iHeight, DKSSceneClassificationParam param);
 // 释放ncnn场景分类结构资源
 void DKSceneClassificationEnd();
 ```
@@ -167,7 +167,7 @@ void DKSceneClassificationEnd();
 // 初始化，连接sqlite，获取人脸库中各个人脸的特征
 void DKFaceRecognizationInit();
 // 运行knn人脸识别，得到识别结果，如果没有识别出或相似度大于某一阈值（在识别参数中定义），则输出null，否则输出识别出的人的index。
-int DKFaceRecognizationProcess(char * imgfilename, DKSMultiDetectionRes boxes, DKSFaceRecognizationParam param);
+int DKFaceRecognizationProcess(char * yuvfilename, int iWidth, int iHeight, DKSMultiDetectionRes boxes, DKSFaceRecognizationParam param);
 // 释放人脸识别资源
 void DKFaceRecognizationEnd();
 ```
@@ -177,7 +177,7 @@ void DKFaceRecognizationEnd();
 // 初始化，连接sqlite，准备写入人脸特征和语音，初始化学习图片次数为0
 void DKFaceRegisterInit();
 // 根据检测到的人脸结果计算特征
-int DKFaceRegisterProcess(char * imgfilename, DKSMultiDetectionRes boxes, DKSFaceRegisterParam param);
+int DKFaceRegisterProcess(char * yuvfilename, int iWidth, int iHeight, DKSMultiDetectionRes boxes, DKSFaceRegisterParam param);
 // 将计算好的特征存入sqlite中（flag为1），或取消学习人脸（flag为0）
 void DKFaceRegisterEnd(int flag);
 ```
@@ -187,7 +187,7 @@ void DKFaceRegisterEnd(int flag);
 // 初始化，用以加载ncnn lstm文字识别模型
 void DKBoxTextRecognizationInit();
 // 运行ncnn lstm文字识别，输出识别字符串
-char * DKBoxTextRecognizationProcess(char * imgfilename, DKSBox box, DKSBoxTextRecognizationParam param);
+char * DKBoxTextRecognizationProcess(char * yuvfilename, int iWidth, int iHeight, DKSBox box, DKSBoxTextRecognizationParam param);
 // 释放ncnn文字识别结构资源
 void DKBoxTextRecognizationEnd();
 ```
@@ -197,7 +197,7 @@ void DKBoxTextRecognizationEnd();
 // ABBYY初始化
 void DKTextRecognizationInit();
 // ABBYY整篇文档识别，输出识别字符串
-char * DKTextRecognizationProcess(char * imgfilename, DKSTextRecognizationParam param);
+char * DKTextRecognizationProcess(char * yuvfilename, int iWidth, int iHeight, DKSTextRecognizationParam param);
 // ABBYY资源释放
 void DKTextRecognizationEnd();
 ```
@@ -207,7 +207,7 @@ void DKTextRecognizationEnd();
 // 初始化，连接sqlite，获取物体库中各个物体的特征
 void DKObjectRecognizationInit();
 // 计算图像中心区域（1/4原图像大小）特征，并与sqlite中特征进行对比，如果相似度大于某一阈值（在识别参数中定义），则输出null，否则输出识别出的物体的index。
-int DKObjectRecognizationProcess(char * imgfilename, DKSObjectRecognizationParam param, DKSObjectRecognizationParam param);
+int DKObjectRecognizationProcess(char * yuvfilename, int iWidth, int iHeight, DKSObjectRecognizationParam param, DKSObjectRecognizationParam param);
 // 释放物体识别资源
 void DKObjectRecognizationEnd();
 ```
@@ -217,7 +217,7 @@ void DKObjectRecognizationEnd();
 // 初始化，连接sqlite，准备写入物体特征和语音，初始化学习图片次数为0
 void DKObjectRegisterInit();
 // 根据图像中间位置（1/4原图像大小）子图像计算特征
-char * DKObjectRegisterProcess(char * imgfilename, DKSObjectRegisterParam param);
+char * DKObjectRegisterProcess(char * yuvfilename, int iWidth, int iHeight, DKSObjectRegisterParam param);
 // 将计算好的特征存入sqlite中（flag为1），或取消学习人脸（flag为0）
 void DKObjectRegisterEnd(int flag);
 ```
@@ -227,7 +227,7 @@ void DKObjectRegisterEnd(int flag);
 // 初始化
 void DKColorRecognizationInit();
 // 识别图像中间位置或手指指向位置区域，如果该区域纹理平滑则输出与12中基色最相近的颜色序号，否则输出0
-int DKColorRecognizationProcess(char * imgfilename, DKSColorRecognizationParam param);
+int DKColorRecognizationProcess(char * yuvfilename, int iWidth, int iHeight, DKSColorRecognizationParam param);
 // 释放资源
 void DKColorRecognizationEnd();
 ```
