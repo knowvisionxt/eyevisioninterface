@@ -164,7 +164,7 @@ void DKSceneClassificationEnd();
 ### 检测模式分类
 ```
 // 说明：区分普通场景中的手势/纸币/人脸/文字区域，用以判断接下来做何种识别。
-// 运行ncnn场景分类，得到分类结果。返回分类类别，例如DKOFACE。index为从DKSMultiDetectionRes选择出的boxes序号，下面的步骤即针对该框进行识别。
+// 根据多分类检测结果，返回分类类别，例如DKOFACE。index为从DKSMultiDetectionRes选择出的boxes序号，下面的步骤即针对该框进行识别。
 int DKSelectMode(DKSMultiDetectionRes boxes, int &index);
 ```
 ### 人脸识别
